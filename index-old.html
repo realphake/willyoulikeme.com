@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<title>Will You Like It?</title>
+		<script type="text/javascript" src="lib/d3.v3.js"></script>
+		<script type="text/javascript" src="lib/d3.layout.cloud.js"></script>
+		<script type="text/javascript" src="lib/jquery-1.11.0.js"></script>
+		<link rel="stylesheet" type="text/css" href="css/body.css">
+		<link rel="stylesheet" type="text/css" href="css/barchart.css">
+		<link rel="stylesheet" type="text/css" href="css/input-field.css">
+		<link rel="stylesheet" type="text/css" href="css/network-graph.css">
+		<link rel="stylesheet" type="text/css" href="css/wordcloud.css">
+	</head>
+	<body>
+		<div id='input'>
+			<div class='container'>
+				<img src='images/logo-horizontal.png' id='logo' border='0' />
+				<div class="highlighter"></div><textarea id="message" rows="4" cols="20"></textarea>
+				<div id='prediction'><img src='images/like.png' border='0' height='12' /> <span id='likes'>0 friends</span> will like this</div>
+			</div>
+		</div>
+		<div id='barchart'>
+			<h2>What is liked in your post</h2>
+			<div class='tooltip'><img src='images/tooltip.jpg' border='0' /><span class='info'>The keyword prediction chart shows key words in your entry and how many likes they are predicted to generate.</span></div>
+		</div>
+		<div id='wordcloud'>
+			<h2>What you should post about</h2>
+			<div class='tooltip'><img src='images/tooltip.jpg' border='0' /><span class='info'>The recommended word cloud provides suggestions for words to use to increase the number of likes your post will receive.</span></div>
+		</div>
+		<div id='network'>
+			<h2>Who does not like your post</h2>
+			<div class='tooltip'><img src='images/tooltip.jpg' border='0' /><span class='info'>The network graph shows the top predicted likers (green) and non-likers (blue). Click a node to filter that person out of the prediction algorithm. This helps you target posts to specific friends and groups as the other visualization components will change based on these selections.</span></div>
+			<div class='scale'><div style='background: #ffeda0;'></div><div style='background: #ffe18f;'></div><div style='background: #ffd57e;'></div><div style='background: #feca6e;'></div><div style='background: #febe5d;'></div><div style='background: #feb24c;'></div><div style='background: #fb9a43;'></div><div style='background: #f8823a;'></div><div style='background: #f66b32;'></div><div style='background: #f35329;'></div><div style='background: #f03b20;'></div></div>
+			<div class='low'>Liked</div><div class='high'>Not liked</div>
+		</div>
+		
+		<script type="text/javascript" src="js/friends.js"></script>
+		<script type="text/javascript" src="js/testdata.js"></script>
+		<script type="text/javascript" src="js/match.js"></script>
+		<script type="text/javascript" src="js/input-field.js"></script>
+		<script type="text/javascript" src="js/network-graph.js"></script>
+		<script type="text/javascript" src="js/wordcloud.js"></script>		
+		<script type="text/javascript">
+			// get prediction data
+			
+			var friends = friends();
+			var data = testData();
+			var dataset = match(" ", data);
+			setNetwork(dataset.nonMatchingTerms);
+			updateWordcloud(dataset.nonMatchingTerms);
+			
+		</script>
+		<script type="text/javascript" src="js/barchart.js"></script>
+		<script type="text/javascript">
+		</script>
+	</body>
+</html>

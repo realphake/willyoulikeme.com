@@ -1,0 +1,56 @@
+#input {
+	position:absolute;
+	left: 0px;
+	top: 0px;
+	display:inline-flex;
+	width: calc(50% - 34px);
+	height: calc(50% - 34px);
+	padding:0px;
+	margin: 20px;
+	background-color: #FFF; border:2px solid #333; -webkit-border-radius: 20px; -moz-border-radius: 20px; border-radius: 20px; 
+}
+.container {
+	width: 410px;
+	margin: auto;
+}
+#input #logo {
+	width:200px;
+	display: block;
+	margin: auto auto;
+}
+#input .highlighter, textarea {
+	width: 406px;
+	font-size: 10pt;
+	font-family: 'verdana';
+}
+
+#input .highlighter {
+	position: absolute;
+	padding: 1px;
+	margin-left: 1px;
+	color: white;
+	color: rgba(0, 0, 0, 0);
+}
+
+#input .highlighter span {
+	position: relative;
+	top:2px;
+}
+
+#input textarea {
+	position: relative;
+	background-color: transparent;
+}
+
+#likes {
+	color: #3b5998;
+}
+
+#prediction {
+	font-family: 'lucida grande',tahoma,verdana,arial,sans-serif;
+	font-size: 11px;
+	background: #edeff4; 
+	width:400px; 
+	padding:4px; 
+	margin-bottom:1px;
+}

@@ -1,0 +1,331 @@
+/* General */
+body{
+	font-family: 'Lucida Sans', 'trebuchet MS', Arial, Helvetica;    
+	background:url(bgnoise_lg.png);
+	background-repeat: repeat;
+	background-attachment: fixed;
+	font-weight: 400;
+	font-size: 15px;
+	color: #3a2127;
+	overflow: auto;
+}
+
+#logohead {
+	position:absolute;
+	width: 90%;
+	height: 140px;
+	margin: -110px 0 0 0;
+	padding-left: 5px;
+	z-index: 4;
+	}
+.logo {
+	float: left;
+	margin: 48px 0px 0px 0px;
+	}
+
+#paper {
+	margin:80px 0 0 20px;
+	text-align: center;
+	width: 99.5%;
+	zoom: 1;
+	}
+	#paper:before, #paper:after {
+	 	content: "";
+	 	display: table
+	}
+	#paper:after {
+	 	clear: both
+	}
+	#paper .item, #paper .item2 {
+		font-size: 13px;   
+		background: #fff;      
+		border: 1px solid #ddd;
+		color: #333;
+		padding: 20px;
+		width: 90%;
+		_display: inline; /* IE6 double margin fix */
+		position: relative;
+		-moz-box-shadow: 0 2px 2px -1px rgba(0,0,0,.3);
+		-webkit-box-shadow: 0 2px 2px -1px rgba(0,0,0,.3);
+		box-shadow: 0 2px 2px -1px rgba(0,0,0,.3);	
+	}
+	#paper .item {
+		height: 519px;
+	}
+	#paper .item2 {
+		height: 800px;
+	}
+	#paper .item:after, #paper .item2:after {
+	 	z-index: -1; 
+	 	position: absolute; 
+	 	content: "";
+	 	bottom: 10px;
+	 	right: 4px;
+	 	width: 80%; 
+	 	top: 80%; 
+	 	-webkit-box-shadow: 0 12px 5px rgba(0, 0, 0, .3);   
+	 	-moz-box-shadow: 0 12px 5px rgba(0, 0, 0, .3);
+	 	box-shadow: 0 12px 5px rgba(0, 0, 0, .3);
+	 	-webkit-transform: rotate(3deg);    
+	 	-moz-transform: rotate(3deg);   
+	 	-o-transform: rotate(3deg);
+	 	-ms-transform: rotate(3deg);
+	 	transform: rotate(3deg);	
+	 }
+	 	
+.tooltip {
+	position: absolute;
+	top: -15px;
+	left: 90%;
+}
+.info {
+	top:10px;
+	right:20px;
+	background-color: #FFF;
+	width: 400px;
+	border-radius:0px;
+	text-align: left;
+	padding: 5px;
+	margin: 10px;
+	visibility: hidden;
+	position:absolute;
+	font-size: 13px;
+	color: #59729d;
+}
+.tooltip:hover .info {
+	visibility: visible;
+}
+
+#menu img {
+	margin: 0.5% 0 0 1%;
+	float: left;
+	padding-right: 0px;
+}
+.copyright {
+	float: right;
+	margin: 2% 8% 0 0;
+}
+	
+#input, #wordcloud, #barchart, #network, #abouttext, #aboutwylm, #reports, #contactus {
+	width: 49.4%;
+	position: relative;
+}
+#input, #wordcloud {
+	height: 225px;
+	margin-top: -15px;
+}
+#barchart, #network {
+	height: 322px;
+}
+#aboutwylm, #abouttext {
+	margin-top: -10px;
+}
+#abouttext, #aboutwylm, #reports, #contactus {
+	height: 400px;
+}
+#input img, #wordcloud img, #barchart img, #network img, #abouttext img, #aboutwylm img, #reports img, #contactus img {
+	padding: 20px 0 0 10px;
+}
+
+/* Input */
+#input, #aboutwylm {
+	display:inline;
+	float: left;
+	border-right: 1px dashed #59729d;
+	border-bottom: 1px dashed #59729d;
+	font-size: 25px; 
+	letter-spacing: 1px;
+}
+.inputcontainer {
+	width: 410px;
+	margin: auto;
+}
+#input .highlighter, textarea {
+	font-family: monospace;
+	width: 406px;
+	text-align: left;
+	max-height: 80px;
+	font-size: 10pt;
+	font-weight: 400;
+	letter-spacing: 0px;
+}
+#input .highlighter {
+	position: absolute;
+	top: 45px;
+	padding: 1px;
+	margin-left: 1px;
+	color: white;
+	color: rgba(0, 0, 0, 0);
+}
+
+#input .highlighter span {
+	position: relative;
+	top:2px;
+}
+
+#input textarea {
+	position: relative;
+	background-color: transparent;
+}
+.text {
+	position: relative;
+	margin: -5px 0 0 0;
+	background: transparent;
+}
+#likes {
+	font-size: 40px;
+	font-weight: bold;
+	color: #59729d;
+}
+#prediction {
+position: relative;
+	background: transparent;
+	text-align: center;
+	padding: 0 0 0 0;
+}
+.likespic {
+position: relative;	
+}
+
+/* Wordcloud */
+#wordcloud, #abouttext {
+	float: right;
+	border-bottom: 1px dashed #59729d;
+	margin-right: 1%;
+}
+#wordcloud text:hover {
+    cursor: pointer;
+}
+
+/* Barchart */
+#barchart, #reports {
+	border-right: 1px dashed #59729d;
+	float: left;
+}
+#barchart .bar { 
+	display: inline-block; 
+	width: 20px; 
+	height: 75px;
+	margin-right:2px;
+	background-color: teal;
+}
+#barchart .axis path, #barchart .axis line { 
+	fill: none; 
+	stroke: black; 
+	shape-rendering: crispEdges;
+}
+#barchart .value { 
+	text-align: right;
+	font-size: 16px;
+	font-weight: bold;
+}
+#barchart .name {
+	text-align: right;
+	font-size: 16px;
+}
+
+/* Network graph */
+#network, #contactus {
+	margin-right: 1%;
+	float: right;
+}
+
+#network .line {
+  fill: #666;
+  stroke: #666;
+  stroke-width: 2px;
+}
+
+#network .normal{
+  stroke: #666;
+  stroke-width: 1px;
+}
+
+#network .normal, #network .ignored:hover {
+    cursor: pointer;
+}
+
+#network .ignored { 
+  fill: #999;
+  stroke: #666;
+  stroke-width: 1px;
+}
+
+#network text {
+  font-size: 13px;
+  pointer-events: none;
+}
+
+#network .scale {
+	position:absolute;
+	bottom: 20px;
+	left: 20px;
+	width: 110px;
+	height: 10px;
+	border: 1px solid #333;
+}
+#network .scale div {
+	float:left;
+	width: 10px;
+	height: 10px;
+}
+#network .low {
+	position:absolute;
+	bottom: 0px;
+	left: 10px;
+	font-size: 16px;
+}
+#network .high {
+	position:absolute;
+	bottom: 0px;
+	left: 100px;
+	font-size: 16px;
+}
+
+/* About page */
+.menuabout {
+	padding-left: 20px;
+}
+.copyrightmenu, .copyrightmenu-about {
+	float: right;
+	margin: 1% 8% 0 0;
+	padding-bottom: 0px;
+}
+.copyrightmenu-about{
+	padding-bottom: 5px;
+}
+.poster {
+position: relative;
+	height: 300px;
+}
+.aboutus, .aboutusright, .aboutus2 {
+text-align: left;
+font-size: 12px;
+margin-top: -5px;
+letter-spacing: 1px;
+}
+.aboutus2{
+text-align: left;
+font-size: 11px;
+margin-top: -12px;
+letter-spacing: 1px;
+}
+.aboutusright, .aboutusright2{
+margin-top: 2px;
+margin-left: 20px;
+letter-spacing: 1px;
+}
+.aboutusright2{
+text-align: left;
+font-size: 11px;
+margin-top: -12px;
+margin-left: 20px;
+letter-spacing: 1px;
+}
+.bold {
+	font-weight: bold;
+}
+.bold a:link, .bold a:hover, .bold a:visited{
+	text-decoration: none;
+	color: #000;
+}

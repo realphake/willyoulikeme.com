@@ -1,0 +1,65 @@
+#network {
+	position:absolute;
+	right: 0px;
+	bottom: 0px;
+	width: calc(50% - 34px);
+	height: calc(50% - 34px);
+	padding:0px;
+	margin: 20px;
+	background-color: #FFF; border:2px solid #333; -webkit-border-radius: 20px; -moz-border-radius: 20px; border-radius: 20px; 
+}
+#network .foaf { 
+  fill: #999;
+  stroke: #7689B5;
+  stroke-width: 4px;
+}
+
+#network .line {
+  fill: #CCC;
+  stroke: #CCC;
+  stroke-width: 2px;
+}
+
+#network .normal{ 
+  fill: #999;
+  stroke-width: 2px;
+}
+
+#network .normal, #network .ignored:hover {
+    cursor: pointer;
+}
+
+#network .ignored { 
+  fill: #BBB;
+  stroke: #DDD;
+  stroke-width: 2px;
+}
+
+#network text {
+  font: 10px sans-serif;
+  pointer-events: none;
+}
+
+#network .scale {
+position:absolute;
+bottom: 20px;
+left: 20px;
+width: 110px;
+height: 10px;
+border: 1px solid #333;
+}
+#network .scale div {
+	float:left;
+	width: 10px;
+	height: 10px;
+}
+#network .low {
+	position:absolute;
+	bottom: 5px;
+	left: 10px;
+}
+#network .high {
+	position:absolute;
+	bottom: 5px;
+	left: 100px;
+}
