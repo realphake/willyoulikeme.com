@@ -6,6 +6,9 @@ import csv
 def crawl( username, token, limit ):
 
     username = turnUsernameIntoId(username)
+
+    # keep an array similar to the CSV in memory:
+    crawledPage = []
     
     # Make a csv file on disk
     csvFile = open('real-data.csv', 'w')
@@ -13,6 +16,11 @@ def crawl( username, token, limit ):
     csvWriter.writerow(["Message","Message Length","Time Posted",
                         "# Likes","# Shares","# Comments",
                         "Update Type","Link URL","Post URL"])
+    
+    crawledPage.append(["Message","Message Length","Time Posted",
+                        "# Likes","# Shares","# Comments",
+                        "Update Type","Link URL","Post URL"])
+    
     
     # Create the URL needed
     url = "https://graph.facebook.com/"+username+\
@@ -45,9 +53,12 @@ def crawl( username, token, limit ):
             # Write the data to the file
             if statusUpdate["from"]["id"] == username:
                 csvWriter.writerow([message,messageLength,time,likes,shares,comments,updateType,linkURL,postURL])
+                crawledPage.append([message,messageLength,time,likes,shares,comments,updateType,linkURL,postURL])
 
         if "paging" in JSONdata: url = JSONdata["paging"]["next"]
         else: break
+    return crawledPage
+        
 
 def crawlFriends( username, token ):
 
@@ -137,7 +148,7 @@ if __name__ == '__main__':
     token = ''
     username = 'philip.anderson1'
     limit = 1000
-    crawl(username, token, limit)
+    page = crawl(username, token, limit)
     #crawlFriends( username, token )
     
 
