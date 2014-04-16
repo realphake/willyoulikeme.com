@@ -25,9 +25,7 @@ def preprocess(csvFile):
         for row in csvReader:
             if row == []: continue
             likes.append(row[3])
-            post = row[0]
-            post = re.sub('\s+', ' ', post)
-            post = ''.join(ch for ch in post if ch not in set(string.punctuation))
+            post = formatPost(row[0])
             tokens = set()
             postDict = {}
             tokenList = post.split()
@@ -63,6 +61,9 @@ def preprocess(csvFile):
             row += [postLengths[pD],postedInNight[pD],postedInMorning[pD],postedInAfternoon[pD],postedInEvening[pD],postHasLink[pD],postHasPhoto[pD],likes[pD]]
             csvWriter.writerow(row)
         print( "Preprocessing done." )
+
+def formatPost(post):
+    return ''.join(ch for ch in re.sub('\s+', ' ', post) if ch not in set(string.punctuation))
 
 if __name__ == '__main__':
     preprocess('real-data.csv')
