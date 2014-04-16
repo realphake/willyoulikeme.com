@@ -54,28 +54,13 @@ def preprocess(csvFile):
         allWords = [i for i, v in allWordsCounting.most_common(50)]
         allWords = allWords[10:]
         newHeader = allWords[:]
-        # Can't forget about [:]! Otherwise the header is a pointer to allwords!
-        newHeader.append("post length")
-        newHeader.append("posted at_night")
-        newHeader.append("posted in_morning")
-        newHeader.append("posted in_afternoon")
-        newHeader.append("posted in_evening")
-        newHeader.append("post has_link")
-        newHeader.append("post has_photo")
-        newHeader.append(header[3]) #number of likes
+        newHeader += ["post_length","posted_at_night","posted_in_morning","posted_in_afternoon","posted_in_evening","post_has_link","post_has_photo",header[3]]
         csvWriter.writerow(newHeader)
         for pD in range(len(postDicts)):
             row = []
             for w in allWords:
                 row.append(1.0*(w in postDicts[pD]))
-            row.append(postLengths[pD])
-            row.append(postedInNight[pD])
-            row.append(postedInMorning[pD])
-            row.append(postedInAfternoon[pD])
-            row.append(postedInEvening[pD])
-            row.append(postHasLink[pD])
-            row.append(postHasPhoto[pD])
-            row.append(likes[pD])
+            row += [postLengths[pD],postedInNight[pD],postedInMorning[pD],postedInAfternoon[pD],postedInEvening[pD],postHasLink[pD],postHasPhoto[pD],likes[pD]]
             csvWriter.writerow(row)
         print( "Preprocessing done." )
 
