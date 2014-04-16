@@ -35,20 +35,13 @@ def preprocess(csvFile):
                 tokens.add(t)
                 allWordsCounting[t] += 1
             postDicts.append(postDict)
-            postLengths.append(row[1])
-            date = datetime.datetime.strptime(row[2][11:19], "%H:%M:%S")
-            try: secs_since_midnight = (date - date.replace(hour=0, minute=0, second=0, microsecond=0)).total_seconds()
-            except AttributeError: secs_since_midnight = (date - date.replace(hour=0, minute=0, second=0, microsecond=0)).seconds
-            postedInNight.append((secs_since_midnight >= 0 and\
-                    secs_since_midnight < 3600*6)*1.0)
-            postedInMorning.append((secs_since_midnight >= 3600*6 and\
-                    secs_since_midnight < 3600*12)*1.0)
-            postedInAfternoon.append((secs_since_midnight >= 3600*12 and\
-                    secs_since_midnight < 3600*18)*1.0)
-            postedInEvening.append((secs_since_midnight >= 3600*18 and\
-                    secs_since_midnight < 3600*24)*1.0)
-            postHasLink.append((row[6] == 'link')*1.0)
-            postHasPhoto.append((row[6] == 'photo')*1.0)
+            postLengths.append(row[1].zfill(3))
+            postedInNight.append(timeBetween(0,secsSinceMidnight(row[2]),6))
+            postedInMorning.append(timeBetween(6,secsSinceMidnight(row[2]),12))
+            postedInAfternoon.append(timeBetween(12,secsSinceMidnight(row[2]),18))
+            postedInEvening.append(timeBetween(18,secsSinceMidnight(row[2]),24))
+            postHasLink.append(postHasA(row[6], 'link'))
+            postHasPhoto.append(postHasA(row[6], 'photo'))
         allWords = [i for i, v in allWordsCounting.most_common(50)]
         allWords = allWords[10:]
         newHeader = allWords[:]
@@ -57,13 +50,25 @@ def preprocess(csvFile):
         for pD in range(len(postDicts)):
             row = []
             for w in allWords:
-                row.append(1.0*(w in postDicts[pD]))
+                row.append(1*(w in postDicts[pD]))
             row += [postLengths[pD],postedInNight[pD],postedInMorning[pD],postedInAfternoon[pD],postedInEvening[pD],postHasLink[pD],postHasPhoto[pD],likes[pD]]
             csvWriter.writerow(row)
         print( "Preprocessing done." )
 
+def postHasA(postType, thing):
+    return (postType == thing)*1
+
 def formatPost(post):
     return ''.join(ch for ch in re.sub('\s+', ' ', post) if ch not in set(string.punctuation))
+
+def timeBetween(begin, ssm, end):
+    return (ssm >= 3600*begin and ssm < 3600*end)*1
+
+def secsSinceMidnight(dateString):
+    date = datetime.datetime.strptime(dateString[11:19], "%H:%M:%S")
+    try: secs_since_midnight = (date - date.replace(hour=0, minute=0, second=0, microsecond=0)).total_seconds()
+    except AttributeError: secs_since_midnight = (date - date.replace(hour=0, minute=0, second=0, microsecond=0)).seconds
+    return secs_since_midnight
 
 if __name__ == '__main__':
     preprocess('real-data.csv')
