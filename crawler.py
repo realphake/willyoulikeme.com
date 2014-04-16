@@ -36,28 +36,45 @@ def crawl( username, token, limit ):
         JSONdata = json.loads(content)
         # Open the data in this JSON file
         for statusUpdate in JSONdata["data"]:
-            # Retrieve all the relevant data from this status update
-            if "message" in statusUpdate: message = statusUpdate["message"].encode('ascii','ignore')
-            else: message = ""
-            messageLength = len(message.split())
-            time = statusUpdate["created_time"]
-            likes = extractNumber("likes", statusUpdate)
-            if "shares" in statusUpdate: shares = statusUpdate["shares"]["count"]
-            else: shares = 0
-            comments = extractNumber("comments", statusUpdate)
-            updateType = statusUpdate["type"]
-            if "link" in statusUpdate: linkURL = statusUpdate["link"]
-            else: linkURL = ""
-            if "actions" in statusUpdate: postURL = statusUpdate["actions"][0]["link"]
-            else: postURL = ""
-            # Write the data to the file
             if statusUpdate["from"]["id"] == username:
-                csvWriter.writerow([message,messageLength,time,likes,shares,comments,updateType,linkURL,postURL])
-                crawledPage.append([message,messageLength,time,likes,shares,comments,updateType,linkURL,postURL])
+                csvWriter.writerow([getMessageFrom(statusUpdate), len(getMessageFrom(statusUpdate).split()),
+                                    statusUpdate["created_time"], extractNumber("likes",statusUpdate),
+                                    getSharesFrom(statusUpdate), extractNumber("comments",statusUpdate),
+                                    statusUpdate["type"], getLinkURLFrom(statusUpdate), getPostURLFrom(statusUpdate)])
+                crawledPage.append([getMessageFrom(statusUpdate), len(getMessageFrom(statusUpdate).split()),
+                                    statusUpdate["created_time"], extractNumber("likes",statusUpdate),
+                                    getSharesFrom(statusUpdate), extractNumber("comments",statusUpdate),
+                                    statusUpdate["type"], getLinkURLFrom(statusUpdate), getPostURLFrom(statusUpdate)])
 
-        if "paging" in JSONdata: url = JSONdata["paging"]["next"]
+        if hasNextPage(JSONdata): url = getURLOfNextPage(JSONdata)
         else: break
     return crawledPage
+
+def hasNextPage(JSONdata):
+    return "paging" in JSONdata
+
+def getURLOfNextPage(JSONdata):
+    return JSONdata["paging"]["next"]
+
+def getLinkURLFrom(statusUpdate):
+    if "link" in statusUpdate: linkURL = statusUpdate["link"]
+    else: linkURL = ""
+    return linkURL
+
+def getPostURLFrom(statusUpdate):
+    if "actions" in statusUpdate: postURL = statusUpdate["actions"][0]["link"]
+    else: postURL = ""
+    return postURL
+
+def getMessageFrom(statusUpdate):
+    if "message" in statusUpdate: message = statusUpdate["message"].encode('ascii','ignore')
+    else: message = ""
+    return message
+
+def getSharesFrom(statusUpdate):
+    if "shares" in statusUpdate: shares = statusUpdate["shares"]["count"]
+    else: shares = 0
+    return shares
         
 
 def crawlFriends( username, token ):
