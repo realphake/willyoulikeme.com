@@ -4,43 +4,18 @@ import json
 import csv
 
 def crawl( username, token, limit ):
-
     username = turnUsernameIntoId(username)
-
-    # keep an array similar to the CSV in memory:
     crawledPage = []
-    
-    # Make a csv file on disk
-    csvFile = open('real-data.csv', 'w')
-    csvWriter = csv.writer(csvFile, quotechar = '|')
-    csvWriter.writerow(["Message","Message Length","Time Posted",
-                        "# Likes","# Shares","# Comments",
-                        "Update Type","Link URL","Post URL"])
-    
-    crawledPage.append(["Message","Message Length","Time Posted",
-                        "# Likes","# Shares","# Comments",
-                        "Update Type","Link URL","Post URL"])
-    
-    
-    # Create the URL needed
-    url = "https://graph.facebook.com/"+username+\
-        "/feed?limit="+str(limit)+\
-        "&fields=message,created_time,shares,from,comments.limit(1).summary(true),type,"+\
-        "link,actions,likes.limit(1).summary(true)&access_token="+token
+    crawledPage.append(["Message","Message Length","Time Posted","# Likes","# Shares","# Comments","Update Type","Link URL","Post URL"])
+    url = createFacebookAPIURL(username, limit, token)
     pageNum = 0
     while( True ):
         pageNum += 1
         print("Page "+ str(pageNum) +" being processed.")
-        response = openURLsafely(url)
-        content = decodeContent(response)
-        JSONdata = json.loads(content)
+        JSONdata = JSONFromURL(url)
         # Open the data in this JSON file
         for statusUpdate in JSONdata["data"]:
             if statusUpdate["from"]["id"] == username:
-                csvWriter.writerow([getMessageFrom(statusUpdate), len(getMessageFrom(statusUpdate).split()),
-                                    statusUpdate["created_time"], extractNumber("likes",statusUpdate),
-                                    getSharesFrom(statusUpdate), extractNumber("comments",statusUpdate),
-                                    statusUpdate["type"], getLinkURLFrom(statusUpdate), getPostURLFrom(statusUpdate)])
                 crawledPage.append([getMessageFrom(statusUpdate), len(getMessageFrom(statusUpdate).split()),
                                     statusUpdate["created_time"], extractNumber("likes",statusUpdate),
                                     getSharesFrom(statusUpdate), extractNumber("comments",statusUpdate),
@@ -49,6 +24,16 @@ def crawl( username, token, limit ):
         if hasNextPage(JSONdata): url = getURLOfNextPage(JSONdata)
         else: break
     return crawledPage
+
+def JSONFromURL(url):
+    response = openURLsafely(url)
+    content = decodeContent(response)
+    return json.loads(content)
+
+def createFacebookAPIURL(username, limit, token):
+    return "https://graph.facebook.com/"+username+"/feed?limit="+str(limit)+\
+        "&fields=message,created_time,shares,from,comments.limit(1).summary(true),type,"+\
+        "link,actions,likes.limit(1).summary(true)&access_token="+token
 
 def hasNextPage(JSONdata):
     return "paging" in JSONdata
