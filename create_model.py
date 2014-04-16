@@ -28,7 +28,7 @@ def build_model(csvFile):
             data.append(datarow)
             likes.append(float(row[-1]))
     #split data into a training and test set
-    testSize = int(math.ceil(len(data)*0.1)) #take 20 percent of the data
+    testSize = int(math.ceil(len(data)*0.1))
 
     combined = zip(data, likes)
     random.shuffle(combined)
@@ -40,12 +40,9 @@ def build_model(csvFile):
     trainLikes = likes[:-testSize]
     testLikes = likes[-testSize:]
 
-    #fit a model to the training data
+
     clf = linear_model.LinearRegression()
     #clf = linear_model.Perceptron()
-    #clf = svm.SVR()
-    #clf = linear_model.LogisticRegression()
-    #clf = SGDClassifier()
 
     clfOutput = copy.deepcopy(clf)
     clf.fit(trainData, trainLikes)
