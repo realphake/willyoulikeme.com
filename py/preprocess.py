@@ -7,7 +7,7 @@ import datetime
 def preprocess(data):
     allWordsCounting = collections.Counter()
     postDicts = []
-    fullRow = []
+    fullRows = []
     for row in data:
         if row == []: continue
         post = formatPost(row[0])
@@ -17,20 +17,27 @@ def preprocess(data):
             postDict[t] = 1
             allWordsCounting[t] += 1
         postDicts.append(postDict)
-        fullRow.append([row[1],
-                        timeBetween(0,sSinceMid(row[2]),6),timeBetween(6,sSinceMid(row[2]),12),
-                        timeBetween(12,sSinceMid(row[2]),18),timeBetween(18,sSinceMid(row[2]),24),
-                        postHasA(row[6],'link'),postHasA(row[6],'photo'),row[3]])
+        fullRows.append(makeRowOfFeatures(row))
     allWords = [i for i, v in allWordsCounting.most_common(50)]
+    fullyProcessedDatabase = makeTheProcessedData(allWords,postDicts,fullRows)
+    print( "Preprocessing done." )
+    print(fullyProcessedDatabase)
+    return fullyProcessedDatabase
+
+def makeTheProcessedData(allWords,postDicts, fullRows):
     fullyProcessedDatabase = []
     for pD in range(len(postDicts)):
         row = []
         for w in allWords:
             row.append(1*(w in postDicts[pD]))
-        row += fullRow[pD]
+        row += fullRows[pD]
         fullyProcessedDatabase.append(row)
-    print( "Preprocessing done." )
     return fullyProcessedDatabase
+
+def makeRowOfFeatures(row):
+    return [row[1], timeBetween(0,sSinceMid(row[2]),6), timeBetween(6,sSinceMid(row[2]),12),
+            timeBetween(12,sSinceMid(row[2]),18), timeBetween(18,sSinceMid(row[2]),24),
+            postHasA(row[6],'link'), postHasA(row[6],'photo'), row[3]]
 
 def postHasA(postType, thing):
     return (postType == thing)*1

@@ -43,24 +43,20 @@ def getURLOfNextPage(JSONdata):
     return JSONdata["paging"]["next"]
 
 def getLinkURLFrom(statusUpdate):
-    if "link" in statusUpdate: linkURL = statusUpdate["link"]
-    else: linkURL = ""
-    return linkURL
+    if "link" in statusUpdate: return statusUpdate["link"]
+    else: return ""
 
 def getPostURLFrom(statusUpdate):
-    if "actions" in statusUpdate: postURL = statusUpdate["actions"][0]["link"]
-    else: postURL = ""
-    return postURL
+    if "actions" in statusUpdate: return statusUpdate["actions"][0]["link"]
+    else: return ""
 
 def getMessageFrom(statusUpdate):
-    if "message" in statusUpdate: message = statusUpdate["message"]
-    else: message = ""
-    return message
+    if "message" in statusUpdate: return statusUpdate["message"]
+    else: return ""
 
 def getSharesFrom(statusUpdate):
-    if "shares" in statusUpdate: shares = statusUpdate["shares"]["count"]
-    else: shares = 0
-    return shares
+    if "shares" in statusUpdate: return statusUpdate["shares"]["count"]
+    else: return 0
         
 
 def crawlFriends( username, token ):
