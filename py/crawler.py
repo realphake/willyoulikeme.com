@@ -5,8 +5,8 @@ import csv
 
 def crawl( username, token, limit ):
     username = turnUsernameIntoId(username)
+    # ["Message","Message Length","Time Posted","# Likes","# Shares","# Comments","Update Type","Link URL","Post URL"]
     crawledPage = []
-    crawledPage.append(["Message","Message Length","Time Posted","# Likes","# Shares","# Comments","Update Type","Link URL","Post URL"])
     url = createFacebookAPIURL(username, limit, token)
     pageNum = 0
     while( True ):
@@ -53,7 +53,7 @@ def getPostURLFrom(statusUpdate):
     return postURL
 
 def getMessageFrom(statusUpdate):
-    if "message" in statusUpdate: message = statusUpdate["message"].encode('ascii','ignore')
+    if "message" in statusUpdate: message = statusUpdate["message"]
     else: message = ""
     return message
 
@@ -148,7 +148,7 @@ def turnUsernameIntoId(username):
 
 
 if __name__ == '__main__':
-    token = 'CAACEdEose0cBACv836oYC2sSL64VrIVVxf6ksw1ohBxHQcRr0pXo2G29OuPgP4E8BBi9g5dfZAPDatDBYnIxf7HROD67ZCcq1qpJiadWKAYRpGb3yJQ3m5yDPPL1VvynAmQML4ZCGcLjhhQvS8MBUrZChkCVuze33t2CWeGUXnxH0thL4UA9c7xzGAgJjrukWGbtc9NvoQZDZD'
+    token = ''
     username = 'philip.anderson1'
     limit = 1000
     page = crawl(username, token, limit)
