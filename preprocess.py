@@ -5,7 +5,6 @@ import collections
 import datetime
 
 def preprocess(csvFile):
-    # read csv
     with open(csvFile, 'r') as csvfile:
         csvReader = csv.reader(csvfile, delimiter=',', quotechar='|')
         procCsv = open('processed-data.csv', 'w')
@@ -13,19 +12,16 @@ def preprocess(csvFile):
         try: header = csvReader.next()
         except AttributeError: header = next(csvReader)
         allWordsCounting = collections.Counter()
-        
         postDicts = []
         fullRow = []
         for row in csvReader:
             if row == []: continue
             post = formatPost(row[0])
-            tokens = set()
             postDict = {}
-            tokenList = post.split()
-            for token in tokenList:
+            
+            for token in post.split():
                 t = token.lower()
                 postDict[t] = 1
-                tokens.add(t)
                 allWordsCounting[t] += 1
             postDicts.append(postDict)
             fullRow.append([row[1].zfill(3),
@@ -33,15 +29,17 @@ def preprocess(csvFile):
                             timeBetween(12,sSinceMid(row[2]),18),timeBetween(18,sSinceMid(row[2]),24),
                             postHasA(row[6],'link'),postHasA(row[6],'photo'),row[3]])
         allWords = [i for i, v in allWordsCounting.most_common(50)]
-        newHeader = allWords[:]
-        newHeader += ["post_length","posted_at_night","posted_in_morning","posted_in_afternoon","posted_in_evening","post_has_link","post_has_photo",header[3]]
+        newHeader = allWords[:] + ["post_length","posted_at_night","posted_in_morning","posted_in_afternoon","posted_in_evening","post_has_link","post_has_photo",header[3]]
         csvWriter.writerow(newHeader)
+        fullyProcessedDatabase = []
         for pD in range(len(postDicts)):
             row = []
             for w in allWords:
                 row.append(1*(w in postDicts[pD]))
             row += fullRow[pD]
+            fullyProcessedDatabase.append(row)
             csvWriter.writerow(row)
+        return fullyProcessedDatabase
         print( "Preprocessing done." )
 
 def postHasA(postType, thing):
