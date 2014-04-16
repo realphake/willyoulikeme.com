@@ -39,8 +39,9 @@ def preprocess(csvFile):
             row += fullRow[pD]
             fullyProcessedDatabase.append(row)
             csvWriter.writerow(row)
-        return fullyProcessedDatabase
         print( "Preprocessing done." )
+        return fullyProcessedDatabase
+        
 
 def postHasA(postType, thing):
     return (postType == thing)*1

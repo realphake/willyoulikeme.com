@@ -13,17 +13,18 @@ def crawl( username, token, limit ):
         pageNum += 1
         print("Page "+ str(pageNum) +" being processed.")
         JSONdata = JSONFromURL(url)
-        # Open the data in this JSON file
         for statusUpdate in JSONdata["data"]:
             if statusUpdate["from"]["id"] == username:
-                crawledPage.append([getMessageFrom(statusUpdate), len(getMessageFrom(statusUpdate).split()),
-                                    statusUpdate["created_time"], extractNumber("likes",statusUpdate),
-                                    getSharesFrom(statusUpdate), extractNumber("comments",statusUpdate),
-                                    statusUpdate["type"], getLinkURLFrom(statusUpdate), getPostURLFrom(statusUpdate)])
-
+                crawledPage.append(makeRowForPostData(statusUpdate))
         if hasNextPage(JSONdata): url = getURLOfNextPage(JSONdata)
         else: break
     return crawledPage
+
+def makeRowForPostData(statusUpdate):
+    return [getMessageFrom(statusUpdate), len(getMessageFrom(statusUpdate).split()),
+            statusUpdate["created_time"], extractNumber("likes",statusUpdate),
+            getSharesFrom(statusUpdate), extractNumber("comments",statusUpdate),
+            statusUpdate["type"], getLinkURLFrom(statusUpdate), getPostURLFrom(statusUpdate)]
 
 def JSONFromURL(url):
     response = openURLsafely(url)
@@ -147,7 +148,7 @@ def turnUsernameIntoId(username):
 
 
 if __name__ == '__main__':
-    token = ''
+    token = 'CAACEdEose0cBACv836oYC2sSL64VrIVVxf6ksw1ohBxHQcRr0pXo2G29OuPgP4E8BBi9g5dfZAPDatDBYnIxf7HROD67ZCcq1qpJiadWKAYRpGb3yJQ3m5yDPPL1VvynAmQML4ZCGcLjhhQvS8MBUrZChkCVuze33t2CWeGUXnxH0thL4UA9c7xzGAgJjrukWGbtc9NvoQZDZD'
     username = 'philip.anderson1'
     limit = 1000
     page = crawl(username, token, limit)
