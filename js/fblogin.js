@@ -51,5 +51,9 @@ function loadPostData() {
 	token = FB.getAuthResponse()['accessToken'];
 	username = FB.getAuthResponse()['userID'];
 	console.log('Your token is ' + token + ' and your user ID ' + username + '.');
-	
+	$.ajax({url: "/py/hello.py", type: "POST", data: {foo: 'bar', bar: 'foo'}, 
+		success: function(response){
+			$("body").html(response);
+		}
+	});
 }
