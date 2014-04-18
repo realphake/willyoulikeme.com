@@ -49,11 +49,7 @@ window.fbAsyncInit = function() {
 function loadPostData() {
 	console.log('User is logged in.');
 	token = FB.getAuthResponse()['accessToken'];
-	console.log('This is your token: ' + token + '.');
-	//FB.api('/me', function(response) {
-	//	console.log('Good to see you, ' + response.name + '.');
-	//});
+	username = FB.getAuthResponse()['userID'];
+	console.log('Your token is ' + token + ' and your user ID ' + username + '.');
 	
-	//message,created_time,shares,from,comments.limit(1).summary(true),type,link,actions,likes.limit(1).summary(true)
-
 }
