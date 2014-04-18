@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<title>D3 Page</title>
+		<script type="text/javascript" src="d3/d3.v3.js"></script>
+		<script src="d3/jquery-1.11.0.js"></script>
+	</head>
+	<body>
+		<script>
+$.ajax({
+            url: "/cgi-bin/hello.py",
+            type: "POST",
+            data: {foo: 'bar', bar: 'foo'},
+            success: function(response){
+                    $("body").html(response);
+                }
+       });
+		</script>
+	</body>
+</html>
