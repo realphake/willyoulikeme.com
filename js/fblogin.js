@@ -1,9 +1,4 @@
-<html>
-<head></head>
-<body>
-<div id="fb-root"></div>
-<script>
-  window.fbAsyncInit = function() {
+window.fbAsyncInit = function() {
   FB.init({
     appId      : '209071145968628',
     status     : true, // check login status
@@ -59,12 +54,3 @@
       console.log('Good to see you, ' + response.name + '.');
     });
   }
-</script>
-
-<!--
-  Below we include the Login Button social plugin. This button uses the JavaScript SDK to
-  present a graphical Login button that triggers the FB.login() function when clicked. -->
-
-<fb:login-button show-faces="true" width="200" max-rows="1"></fb:login-button>
-</body>
-</html>
