@@ -16,7 +16,7 @@ function deepCopy(obj) {
     return obj;
 }
 
-function match(message, data) {
+function match(message, metadata, data) {
 	// split message into terms
 	var terms = message.match(/\s|\.|,|\/|#|!|$|%|\^|&|\*|;|:|{|}|\=|\-|_|`|~|\(|\)|@|\+|\?|>|<|\[|\]|\+|[a-zA-Z0-9]+/g);
 	
@@ -68,8 +68,8 @@ function match(message, data) {
 	}
 
 	// calculate scores for friends and total likes
-			// Not completely sure what this does:
-			// friendScores[i] = 1 - (like / friendScores[i].length);
+	// Not completely sure what this does:
+	// friendScores[i] = 1 - (like / friendScores[i].length);
 	if(termCount > 0) {
 		var like = 0;
 		for(j in moreData[1]) {
@@ -85,12 +85,12 @@ function match(message, data) {
 				wordCount++;
 		}
 		like += moreData[1][moreData[1].length-7] * wordCount; // length
-		like += moreData[1][moreData[1].length-6] * 1.0; // night
-		like += moreData[1][moreData[1].length-5] * 0.0; // morning
-		like += moreData[1][moreData[1].length-4] * 0.0; // afternoon
-		like += moreData[1][moreData[1].length-3] * 0.0; // evening
-		like += moreData[1][moreData[1].length-2] * 1.0; // Has link
-		like += moreData[1][moreData[1].length-1] * 0.0; // Has photo
+		like += moreData[1][moreData[1].length-6] * metadata.night; // night
+		like += moreData[1][moreData[1].length-5] * metadata.morning; // morning
+		like += moreData[1][moreData[1].length-4] * metadata.afternoon; // afternoon
+		like += moreData[1][moreData[1].length-3] * metadata.evening; // evening
+		like += moreData[1][moreData[1].length-2] * metadata.link; // Has link
+		like += moreData[1][moreData[1].length-1] * metadata.photo; // Has photo
 		likes = like;
 		if(likes < 0)
 			likes = 0;

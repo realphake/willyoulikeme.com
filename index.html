@@ -19,6 +19,11 @@
 				<div class='inputcontainer'>
 					<img src="images/message.png" border='0' /><br />
 					<div class="highlighter"></div><textarea id="message" rows="4" cols="20"></textarea>
+					<div align="center">Will include a 
+						<input type="radio" name="group1" id="photo" value="Photo"> Photo 
+						<input type="radio" name="group1" id="link" value="Link"> Link 
+						<input type="radio" name="group1" id="neither" value="Neither" checked> Neither 
+					</div>
 					<div id='prediction'><span id='likes'>0 <img src="images/likes.png" class="likespic"></span></div>
 					<p class="text">will like this</p>
 				</div>
@@ -65,19 +70,19 @@
 		<a href="http://showmethedata.nl" target="_blank"><img src="images/smtdlogo.png" class="copyrightmenu"></a>    
 		
 	</div>
-</header>    
+</header>
 </div>
 <script type="text/javascript" src="js/friends.js"></script>
 <script type="text/javascript" src="js/testdata.js"></script>
 <script type="text/javascript" src="js/match.js"></script>
 <script type="text/javascript" src="js/input-field.js"></script>
 <script type="text/javascript" src="js/network-graph.js"></script>
-<script type="text/javascript" src="js/wordcloud.js"></script>		
+<script type="text/javascript" src="js/wordcloud.js"></script>
 <script type="text/javascript">
 	// get prediction data	
 	var friends = friends();
 	var data = testData();
-	var dataset = match(" ", data);
+	var dataset = match(" ", {night:1,morning:0,afternoon:0,evening:0,link:0,photo:0}, data);
 	setNetwork();
 	updateWordcloud(dataset.nonMatchingTerms);		
 </script>
