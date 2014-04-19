@@ -48,8 +48,9 @@ function updateVisuals() {
 			}
 			// Update other graphs
 			updateBarchart(dataset.matchingTerms);
-			updateNetwork(dataset.friendScores);
-			updateWordcloud(dataset.nonMatchingTerms);
+			//updateNetwork(dataset.friendScores);
+			//updateWordcloud(dataset.nonMatchingTerms);
+			// UNCOMMENT THESE WHEN THEY'RE DONE! Don't forget the lines in index.html
 		}
 	}, 200);
 }

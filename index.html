@@ -22,7 +22,7 @@
 					<div align="center">Will include a 
 						<input type="radio" name="group1" id="photo" value="Photo"> Photo 
 						<input type="radio" name="group1" id="link" value="Link"> Link 
-						<input type="radio" name="group1" id="neither" value="Neither" checked> Neither 
+						<input type="radio" name="group1" id="neither" value="Neither" checked> Neither
 					</div>
 					<div id='prediction'><span id='likes'>0 <img src="images/likes.png" class="likespic"></span></div>
 					<p class="text">will like this</p>
@@ -31,8 +31,9 @@
 
 			<div id="wordcloud">
 				<img src="images/wordcloud.png">
-					<div class='tooltip'><img src='images/question.png'><span class='info'>The word cloud provides suggestions for words that you can use to increase the number of likes that your post will receive.</span></div>
-				</div>
+				<p class="text">Coming soon!</p>
+				<div class='tooltip'><img src='images/question.png'><span class='info'>The word cloud provides suggestions for words that you can use to increase the number of likes that your post will receive.</span></div>
+			</div>
 
 			<div id="barchart">
 				<img src="images/barchart.png">
@@ -41,6 +42,7 @@
 
 			<div id="network">
 				<img src="images/network.png">
+				<p class="text">Coming soon!</p>
 				<div class='tooltip'><img src='images/question.png'><span class='info'>The network graph shows a prediction of Facebook friends that might not like your message. Click on a node to filter that person out. This helps you target posts to specific friends and groups as the other visualization components will change based on these selections.</span>
 			</div>
 
@@ -83,8 +85,9 @@
 	var friends = friends();
 	var data = testData();
 	var dataset = match(" ", {night:1,morning:0,afternoon:0,evening:0,link:0,photo:0}, data);
-	setNetwork();
-	updateWordcloud(dataset.nonMatchingTerms);		
+	//setNetwork();
+	//updateWordcloud(dataset.nonMatchingTerms);
+	// UNCOMMENT THESE WHEN THEY'RE DONE! Don't forget the lines in input-field.js
 </script>
 <script type="text/javascript" src="js/barchart.js"></script>
 <script type="text/javascript">
