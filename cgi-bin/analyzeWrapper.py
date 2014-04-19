@@ -1,5 +1,4 @@
 #!/Python27/python
-
 import cgi, cgitb 
 
 import crawler
@@ -7,9 +6,8 @@ import preprocess
 #import create_model
 
 cgitb.enable()  # for troubleshooting
-#the cgi library gets vars from html
-params = cgi.FieldStorage()
 
+params = cgi.FieldStorage()
 analyze(params["username"], params["token"])
 
 def analyze(username, token):
