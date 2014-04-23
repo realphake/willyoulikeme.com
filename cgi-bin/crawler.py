@@ -1,7 +1,6 @@
 try: import urllib2
 except ImportError: import urllib.request
 import json
-import csv
 
 def crawl( username, token, limit ):
     username = turnUsernameIntoId(username)
