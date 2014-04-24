@@ -20,7 +20,7 @@ def preprocess(data):
     allWords = [i for i, v in allWordsCounting.most_common(50)]
     fullyProcessedDatabase = makeTheProcessedData(allWords,postDicts,fullRows)
     print( "Preprocessing done." )
-    print(fullyProcessedDatabase)
+    #print(fullyProcessedDatabase)
     return fullyProcessedDatabase
 
 def makeTheProcessedData(allWords,postDicts, fullRows):
