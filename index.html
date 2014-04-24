@@ -1,128 +1,128 @@
 <!DOCTYPE html>
 <html>
-<head>
-<meta charset="utf-8" />
-	<title>Will You Like Me</title>
+	<head>
+		<meta charset="utf-8" />
+		<title>Will You Like Me</title>
 		<script type="text/javascript" src="lib/d3.v3.js"></script>
 		<script type="text/javascript" src="lib/d3.layout.cloud.js"></script>
 		<script type="text/javascript" src="lib/jquery-1.11.0.js"></script>
 		<link rel="stylesheet" type="text/css" href="css/styles.css">
-</head>
-<body>
-<div class="container">
-	<header>
-		<div id="paper">
-			<div id="logohead">
-				<a href="index.html"><img src="images/willyoulikeme2.png" class="logo"></a>	
-			</div>
-		
-		<div class="item">
-			<div id="input">
-				<div class='inputcontainer'>
-					<img src="images/message.png" border='0' /><br />
-					<div class="highlighter"></div><textarea id="message" rows="4" cols="20"></textarea>
-					<div align="center">Will include a 
-						<input type="radio" name="group1" id="photo" value="Photo"> Photo 
-						<input type="radio" name="group1" id="link" value="Link"> Link 
-						<input type="radio" name="group1" id="neither" value="Neither" checked> Neither
-					</div>
-					<div id='prediction'><span id='likes'>0 <img src="images/likes.png" class="likespic"></span></div>
-					<p class="text">will like this</p>
+	</head>
+	<body>
+		<div class="container">
+			<header>
+			<div id="paper">
+				<div id="logohead">
+					<a href="index.html"><img src="images/willyoulikeme2.png" class="logo"></a>	
 				</div>
-			</div>
 
-			<div id="wordcloud">
-				<img src="images/wordcloud.png">
-				<p class="text">Coming soon!</p>
-				<div class='tooltip'><img src='images/question.png'><span class='info'>Click on a word to enter in into your post. This word cloud provides recommendations of terms to use in order to increase the number of likes your post will receive.</span></div>
-			</div>
+				<div class="item">
+					<div id="input">
+						<div class='inputcontainer'>
+							<img src="images/message.png" border='0' /><br />
+							<div class="highlighter"></div><textarea id="message" rows="4" cols="20"></textarea>
+							<div align="center">Will include a 
+								<input type="radio" name="group1" id="photo" value="Photo"> Photo 
+								<input type="radio" name="group1" id="link" value="Link"> Link 
+								<input type="radio" name="group1" id="neither" value="Neither" checked> Neither
+							</div>
+							<div id='prediction'><span id='likes'>0 <img src="images/likes.png" class="likespic"></span></div>
+							<p class="text">will like this</p>
+						</div>
+					</div>
 
-			<div id="barchart">
-				<img src="images/barchart.png">
-				<div class='tooltip'><img src='images/question.png'><span class='info'>This visualization shows in real-time how many likes each keyword is predicted to add to the overall post.</span></div>
-			</div>
+					<div id="wordcloud">
+						<img src="images/wordcloud.png">
+						<p class="text">Coming soon!</p>
+						<div class='tooltip'><img src='images/question.png'><span class='info'>Click on a word to enter in into your post. This word cloud provides recommendations of terms to use in order to increase the number of likes your post will receive.</span></div>
+					</div>
 
-			<div id="network">
-				<img src="images/network.png">
-				<p class="text">Coming soon!</p>
-				
-				<form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
-					<input type="hidden" name="cmd" value="_s-xclick">
-					<input type="hidden" name="hosted_button_id" value="H32C3QE97CPFG">
-					<input type="hidden" name="on0" value="Like us? Choose an Amount Below">Like us? Choose an Amount Below<br><select name="os0">
-						<option value="One Cent">One Cent €0,01 EUR</option>
-						<option value="10 Cents">10 Cents €0,10 EUR</option>
-						<option value="25 Cents">25 Cents €0,25 EUR</option>
-						<option value="50 Cents">50 Cents €0,50 EUR</option>
-						<option value="1 Euro">1 Euro €1,00 EUR</option>
-						<option value="2 Euro">2 Euro €2,00 EUR</option>
-						<option value="5 Euro">5 Euro €5,00 EUR</option>
-						<option value="10 Euro">10 Euro €10,00 EUR</option>
-						<option value="25 Euro">25 Euro €25,00 EUR</option>
-						<option value="50 Euro">50 Euro €50,00 EUR</option>
-					</select><br>
-					<input type="hidden" name="currency_code" value="EUR">
-					<input type="image" src="https://www.paypalobjects.com/en_US/NL/i/btn/btn_buynowCC_LG.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
-					<img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1">
-				</form>
-				
-				<!-- Beginning of facebook login button code -->
-				<div id="fb-root" style="float: center;" class="loginbutton"></div>
-				<script type="text/javascript" src="js/fblogin.js"></script>
-				<!-- Below we include the Login Button social plugin. This button uses the JavaScript SDK to
-				present a graphical Login button that triggers the FB.login() function when clicked. -->
-				<fb:login-button show-faces="true" width="200" max-rows="1" scope='read_stream'></fb:login-button>
-				<!-- End of facebook login button code -->
-				
-				<div class='tooltip'><img src='images/question.png'><span class='info'>Coming soon! The network graph shows how your friends are connected and if they are predicted to like your post. Simply by clicking on a node filters it out of the algorithm. This allows you to target specific people, clusters, or groups of friends.</span>
-			</div>
-				
-				<!-- <div class='scale'>
-					<div style='background: #ffeda0;'></div>
-					<div style='background: #ffe18f;'></div>
-					<div style='background: #ffd57e;'></div>
-					<div style='background: #feca6e;'></div>
-					<div style='background: #febe5d;'></div>
-					<div style='background: #feb24c;'></div>
-					<div style='background: #fb9a43;'></div>
-					<div style='background: #f8823a;'></div>
-					<div style='background: #f66b32;'></div>
-					<div style='background: #f35329;'></div>
-					<div style='background: #f03b20;'></div>
-				</div> 
-				<div class='low'>Liked</div>
-				<div class='high'>Not liked</div> -->
-				
-			</div>
+					<div id="barchart">
+						<img src="images/barchart.png">
+						<div class='tooltip'><img src='images/question.png'><span class='info'>This visualization shows in real-time how many likes each keyword is predicted to add to the overall post.</span></div>
+					</div>
 
+					<div id="network">
+						<img src="images/network.png">
+						<p class="text">Coming soon!</p>
+
+						<form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+							<input type="hidden" name="cmd" value="_s-xclick">
+							<input type="hidden" name="hosted_button_id" value="H32C3QE97CPFG">
+							<input type="hidden" name="on0" value="Like us? Choose an Amount Below">Like us? Choose an Amount Below<br><select name="os0">
+								<option value="One Cent">One Cent €0,01 EUR</option>
+								<option value="10 Cents">10 Cents €0,10 EUR</option>
+								<option value="25 Cents">25 Cents €0,25 EUR</option>
+								<option value="50 Cents">50 Cents €0,50 EUR</option>
+								<option value="1 Euro">1 Euro €1,00 EUR</option>
+								<option value="2 Euro">2 Euro €2,00 EUR</option>
+								<option value="5 Euro">5 Euro €5,00 EUR</option>
+								<option value="10 Euro">10 Euro €10,00 EUR</option>
+								<option value="25 Euro">25 Euro €25,00 EUR</option>
+								<option value="50 Euro">50 Euro €50,00 EUR</option>
+							</select><br>
+							<input type="hidden" name="currency_code" value="EUR">
+							<input type="image" src="https://www.paypalobjects.com/en_US/NL/i/btn/btn_buynowCC_LG.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
+							<img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1">
+						</form>
+
+						<!-- Beginning of facebook login button code -->
+						<div id="fb-root" style="float: center;" class="loginbutton"></div>
+						<script type="text/javascript" src="js/fblogin.js"></script>
+						<!-- Below we include the Login Button social plugin. This button uses the JavaScript SDK to
+						present a graphical Login button that triggers the FB.login() function when clicked. -->
+						<fb:login-button show-faces="true" width="200" max-rows="1" scope='read_stream'></fb:login-button>
+						<!-- End of facebook login button code -->
+
+						<div class='tooltip'><img src='images/question.png'><span class='info'>Coming soon! The network graph shows how your friends are connected and if they are predicted to like your post. Simply by clicking on a node filters it out of the algorithm. This allows you to target specific people, clusters, or groups of friends.</span>
+						</div>
+
+						<!-- <div class='scale'>
+							<div style='background: #ffeda0;'></div>
+							<div style='background: #ffe18f;'></div>
+							<div style='background: #ffd57e;'></div>
+							<div style='background: #feca6e;'></div>
+							<div style='background: #febe5d;'></div>
+							<div style='background: #feb24c;'></div>
+							<div style='background: #fb9a43;'></div>
+							<div style='background: #f8823a;'></div>
+							<div style='background: #f66b32;'></div>
+							<div style='background: #f35329;'></div>
+							<div style='background: #f03b20;'></div>
+						</div> 
+						<div class='low'>Liked</div>
+						<div class='high'>Not liked</div> -->
+
+					</div>
+
+				</div>
+
+				<div id="menu">
+					<a href="about.html"><img src="images/about.png"></a>
+				</div>
+				<a href="http://showmethedata.nl" target="_blank"><img src="images/smtdlogo.png" class="copyrightmenu"></a>    
+
+			</div>
+			</header>
 		</div>
-		
-		<div id="menu">
-			<a href="about.html"><img src="images/about.png"></a>
-		</div>
-		<a href="http://showmethedata.nl" target="_blank"><img src="images/smtdlogo.png" class="copyrightmenu"></a>    
-		
-	</div>
-</header>
-</div>
-<script type="text/javascript" src="js/friends.js"></script>
-<script type="text/javascript" src="js/testdata.js"></script>
-<script type="text/javascript" src="js/match.js"></script>
-<script type="text/javascript" src="js/input-field.js"></script>
-<script type="text/javascript" src="js/network-graph.js"></script>
-<script type="text/javascript" src="js/wordcloud.js"></script>
-<script type="text/javascript">
-	// get prediction data	
-	var friends = friends();
-	var data = testData();
-	var dataset = match(" ", {night:1,morning:0,afternoon:0,evening:0,link:0,photo:0}, data);
-	//setNetwork();
-	//updateWordcloud(dataset.nonMatchingTerms);
-	// UNCOMMENT THESE WHEN THEY'RE DONE! Don't forget the lines in input-field.js
-</script>
-<script type="text/javascript" src="js/barchart.js"></script>
-<script type="text/javascript">
-</script>
+		<script type="text/javascript" src="js/friends.js"></script>
+		<script type="text/javascript" src="js/testdata.js"></script>
+		<script type="text/javascript" src="js/match.js"></script>
+		<script type="text/javascript" src="js/input-field.js"></script>
+		<script type="text/javascript" src="js/network-graph.js"></script>
+		<script type="text/javascript" src="js/wordcloud.js"></script>
+		<script type="text/javascript">
+			// get prediction data	
+		var friends = friends();
+		var data = testData();
+		var dataset = match(" ", {night:1,morning:0,afternoon:0,evening:0,link:0,photo:0}, data);
+		//setNetwork();
+		//updateWordcloud(dataset.nonMatchingTerms);
+		// UNCOMMENT THESE WHEN THEY'RE DONE! Don't forget the lines in input-field.js
+	</script>
+	<script type="text/javascript" src="js/barchart.js"></script>
+	<script type="text/javascript">
+	</script>
 
 </body>
 </html>
