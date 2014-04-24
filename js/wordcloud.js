@@ -46,6 +46,7 @@ function updateWordcloud(input) {
 	{
 		//get sum of prediction data for each term
 		var score = filteredInput[1][i];
+		console.log('word: ' + filteredInput[0][i] + ' score: ' + Math.round(score*100)/100);
 		if(score > 0){
 			termScores.push([filteredInput[0][i],Math.round(score*100)/100]);
 		}

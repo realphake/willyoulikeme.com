@@ -31,7 +31,7 @@ function match(message, metadata, data) {
 	var len = nonMatchingTerms[0].length;
 	for(i = nonMatchingTerms[0].length; i > len - 8; i--) {
 		for(j = 0; j < nonMatchingTerms.length; j++) {
-			nonMatchingTerms[j].splice(i,i);
+			nonMatchingTerms[j].splice(i,1);
 		}
 	}
 	
@@ -57,8 +57,8 @@ function match(message, metadata, data) {
 				termCount++;
 		
 				// sum score for friend
-				nonMatchingTerms[0].splice(moreData[0].length - 7 - i+1,1);
-				for(k = 0; k < moreData.length; k++) {
+				nonMatchingTerms[0].splice(moreData[0].length - 7 - i,1);
+				for(k = 1; k < moreData.length; k++) {
 					console.log(moreData[0].length - 7 - i);
 					friendScores[data[k][0]] = data[k][moreData[0].length - 7 - i];
 					nonMatchingTerms[k].splice(moreData[0].length - 7 - i,1);
