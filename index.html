@@ -14,12 +14,19 @@
 			<div id="paper">
 				<div id="logohead">
 					<a href="index.html"><img src="images/willyoulikeme2.png" class="logo"></a>	
+
+					<br><br>
+					<div id="fb-root" float='left'></div>
+					<script type="text/javascript" src="js/fblogin.js"></script>
+					<fb:login-button show-faces="true" width="200" max-rows="1" scope='read_stream'></fb:login-button>
+					
 				</div>
 
 				<div class="item">
 					<div id="input">
 						<div class='inputcontainer'>
-							<img src="images/message.png" border='0' /><br />
+							<img src="images/message.png" border='0'/><br />
+							
 							<div class="highlighter"></div><textarea id="message" rows="4" cols="20"></textarea>
 							<div align="center">Will include a 
 								<input type="radio" name="group1" id="photo" value="Photo"> Photo 
@@ -66,32 +73,8 @@
 							<img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1">
 						</form>
 
-						<!-- Beginning of facebook login button code -->
-						<div id="fb-root" style="float: center;" class="loginbutton"></div>
-						<script type="text/javascript" src="js/fblogin.js"></script>
-						<!-- Below we include the Login Button social plugin. This button uses the JavaScript SDK to
-						present a graphical Login button that triggers the FB.login() function when clicked. -->
-						<fb:login-button show-faces="true" width="200" max-rows="1" scope='read_stream'></fb:login-button>
-						<!-- End of facebook login button code -->
-
 						<div class='tooltip'><img src='images/question.png'><span class='info'>Coming soon! The network graph shows how your friends are connected and if they are predicted to like your post. Simply by clicking on a node filters it out of the algorithm. This allows you to target specific people, clusters, or groups of friends.</span>
 						</div>
-
-						<!-- <div class='scale'>
-							<div style='background: #ffeda0;'></div>
-							<div style='background: #ffe18f;'></div>
-							<div style='background: #ffd57e;'></div>
-							<div style='background: #feca6e;'></div>
-							<div style='background: #febe5d;'></div>
-							<div style='background: #feb24c;'></div>
-							<div style='background: #fb9a43;'></div>
-							<div style='background: #f8823a;'></div>
-							<div style='background: #f66b32;'></div>
-							<div style='background: #f35329;'></div>
-							<div style='background: #f03b20;'></div>
-						</div> 
-						<div class='low'>Liked</div>
-						<div class='high'>Not liked</div> -->
 
 					</div>
 
