@@ -19,8 +19,8 @@ def build_model(processedData):
     #read in data and likes
     #with open(csvFile, 'rb') as csvfile:
     #    csvReader = csv.reader(csvfile, delimiter=',', quotechar='|')
-    #    header = csvReader.next()
-    for row in processedData:
+    header = processedData[0]
+    for row in processedData[1:]:
         datarow = []
         #we assume the likes are in the last column of the csv
         for d in row[0:-1]:

@@ -25,6 +25,8 @@ def preprocess(data):
 
 def makeTheProcessedData(allWords,postDicts, fullRows):
     fullyProcessedDatabase = []
+    #append the words for the header (add other features later?)
+    fullyProcessedDatabase.append(allWords)
     for pD in range(len(postDicts)):
         row = []
         for w in allWords:
