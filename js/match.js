@@ -19,12 +19,13 @@ function deepCopy(obj) {
 function match(message, metadata, data) {
 	// split message into terms
 	var terms = message.match(/\s|\.|,|\/|#|!|$|%|\^|&|\*|;|:|{|}|\=|\-|_|`|~|\(|\)|@|\+|\?|>|<|\[|\]|\+|[a-zA-Z0-9]+/g);
+	var moreData = likePrediction();
 	
 	// set variables
 	var likes = 0;
 	var termCount = 0;
 	var matchingTerms = [];
-	var nonMatchingTerms = deepCopy(data);
+	var nonMatchingTerms = deepCopy(moreData);
 	var termScores = [0];
 	
 	var len = nonMatchingTerms[0].length;
@@ -40,8 +41,6 @@ function match(message, metadata, data) {
 	{
 		friendScores[data[i][0]] = [];
 	}
-
-	var moreData = likePrediction();
 	
 	// match terms to data
 	for(i = 0; i <= moreData[0].length - 7; i++)
@@ -59,13 +58,15 @@ function match(message, metadata, data) {
 		
 				// sum score for friend
 				nonMatchingTerms[0].splice(moreData[0].length - 7 - i+1,1);
-				for(k = 1; k < data.length; k++) {
-					friendScores[data[k][0]] = data[k][moreData[0].length - 7 - i+1];
-					nonMatchingTerms[k].splice(moreData[0].length - 7 - i+1,1);
+				for(k = 0; k < moreData.length; k++) {
+					console.log(moreData[0].length - 7 - i);
+					friendScores[data[k][0]] = data[k][moreData[0].length - 7 - i];
+					nonMatchingTerms[k].splice(moreData[0].length - 7 - i,1);
 				}
 			}
 		}
 	}
+	console.log(nonMatchingTerms);
 
 	// calculate scores for friends and total likes
 	// Not completely sure what this does:

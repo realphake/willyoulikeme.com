@@ -36,28 +36,30 @@ function updateWordcloud(input) {
 	   }
 	   */
 
+	//This is just some toy data to see if it works
+	//filteredInput = [['occupyboston', 'i', 'want','like', 'meh', 'dislike'], [10, 7, 6, 5, 0, -6]];
+	filteredInput = deepCopy(input);
+	console.log(filteredInput)
 	// sum scores for each term
 	var termScores = [];
-	for(i = 1; i < filteredInput[0].length; i++)
+	for(i = 0; i < filteredInput[0].length; i++)
 	{
 		//get sum of prediction data for each term
-		var score = 0;
-		for(j = 1; j < filteredInput.length; j++) {
-			score += filteredInput[j][i];
-		}
-		if(score >= 0){
+		var score = filteredInput[1][i];
+		if(score > 0){
 			termScores.push([filteredInput[0][i],Math.round(score*100)/100]);
 		}
 	}
-
+	console.log(termScores);
 	cloudScale = d3.scale.linear()
-		.domain([d3.min(termScores, function(d) { return d[1]; }), d3.max(termScores, function(d) { return d[1]; })])
+		.domain([0, d3.max(termScores, function(d) { return d[1]; })])
 		.range([0, 1]);
 
 	d3.layout.cloud()
 		.size([width, height])
 		.words(termScores.map(function(d,i) {
 			//determine the size of a word here (I've created a formula that is based on the width height and array length. it seems to work for now)
+			//return {text: d[0], size: cloudScale(d[1])*(Math.sqrt(width*height)/termScores.length)}
 			return {text: d[0], size: cloudScale(d[1])*(50+(width+height)/termScores.length)}
 		}))
 
