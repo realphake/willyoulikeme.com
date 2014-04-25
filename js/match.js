@@ -59,14 +59,12 @@ function match(message, metadata, data) {
 				// sum score for friend
 				nonMatchingTerms[0].splice(moreData[0].length - 7 - i,1);
 				for(k = 1; k < moreData.length; k++) {
-					console.log(moreData[0].length - 7 - i);
 					friendScores[data[k][0]] = data[k][moreData[0].length - 7 - i];
 					nonMatchingTerms[k].splice(moreData[0].length - 7 - i,1);
 				}
 			}
 		}
 	}
-	console.log(nonMatchingTerms);
 
 	// calculate scores for friends and total likes
 	// Not completely sure what this does:

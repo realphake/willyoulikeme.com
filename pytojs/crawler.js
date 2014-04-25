@@ -9,7 +9,8 @@ function crawl( username, token, limit ) {
         console.log("Page "+ pageNum +" being processed.");
         var JSONdata;
         $.getJSON(url, function(data) { JSONdata = data; });
-        for ( statusUpdate in JSONdata.data ) {
+        for ( var i = 0; i < JSONdata.data.length; i++ ) {
+			var statusUpdate = JSONdata.data[i];
             if ( statusUpdate.from.id == username ) {
                 crawledPage.push(makeRowForPostData(statusUpdate));
             }
@@ -30,11 +31,6 @@ function makeRowForPostData(statusUpdate) {
             // getSharesFrom(statusUpdate), extractNumber("comments",statusUpdate),
             // statusUpdate["type"], getLinkURLFrom(statusUpdate), getPostURLFrom(statusUpdate)]
 }
-
-// def JSONFromURL(url):
-    // response = openURLsafely(url)
-    // content = decodeContent(response)
-    // return json.loads(content)
 
 function createFacebookAPIURL(username, limit, token) {
     return "https://graph.facebook.com/"+username+"/feed?limit="+limit+
@@ -65,20 +61,6 @@ function getURLOfNextPage(JSONdata) {
 // def getSharesFrom(statusUpdate):
     // if "shares" in statusUpdate: return statusUpdate["shares"]["count"]
     // else: return 0
-        
-
-
-
-// def openURLsafely(URL):
-    // try: response = urllib.request.urlopen(URL)
-    // except NameError: response = urllib2.urlopen(URL)
-    // return response
-
-// def decodeContent(response):
-    // # try: content = response.read().decode(response.headers.get_content_charset())
-    // # except AttributeError: content = response.read().decode('utf8')
-    // content = response.read().decode('utf8')
-    // return content
 
 // def extractNumber(category, statusUpdate):
     // if category in statusUpdate: number = statusUpdate[category]["summary"]["total_count"]
