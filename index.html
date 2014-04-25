@@ -17,8 +17,13 @@
 
 					<br><br>
 					<div id="fb-root" float='left'></div>
+					<script type="text/javascript" src="pytojs/crawler.js"></script>
 					<script type="text/javascript" src="js/fblogin.js"></script>
 					<fb:login-button show-faces="true" width="200" max-rows="1" scope='read_stream'></fb:login-button>
+					
+					<script type="text/javascript">
+					crawl( "arjen.swellengrebel", "", 1000 );
+					</script>
 					
 				</div>
 
@@ -97,7 +102,7 @@
 		var data = testData();
 		var dataset = match(" ", {night:1,morning:0,afternoon:0,evening:0,link:0,photo:0}, data);
 		//setNetwork();
-		//updateWordcloud(dataset.nonMatchingTerms);
+		updateWordcloud(dataset.nonMatchingTerms);
 		// UNCOMMENT THESE WHEN THEY'RE DONE! Don't forget the lines in input-field.js
 		</script>
 		<script type="text/javascript" src="js/barchart.js"></script>

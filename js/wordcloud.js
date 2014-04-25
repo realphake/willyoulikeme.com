@@ -39,19 +39,16 @@ function updateWordcloud(input) {
 	//This is just some toy data to see if it works
 	//filteredInput = [['occupyboston', 'i', 'want','like', 'meh', 'dislike'], [10, 7, 6, 5, 0, -6]];
 	filteredInput = deepCopy(input);
-	console.log(filteredInput)
 	// sum scores for each term
 	var termScores = [];
 	for(i = 0; i < filteredInput[0].length; i++)
 	{
 		//get sum of prediction data for each term
 		var score = filteredInput[1][i];
-		console.log('word: ' + filteredInput[0][i] + ' score: ' + Math.round(score*100)/100);
 		if(score > 0){
 			termScores.push([filteredInput[0][i],Math.round(score*100)/100]);
 		}
 	}
-	console.log(termScores);
 	cloudScale = d3.scale.linear()
 		.domain([0, d3.max(termScores, function(d) { return d[1]; })])
 		.range([0, 1]);

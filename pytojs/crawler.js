@@ -9,13 +9,15 @@ function crawl( username, token, limit ) {
         console.log("Page "+ pageNum +" being processed.");
         var JSONdata;
         $.getJSON(url, function(data) { JSONdata = data; });
-        for ( statusUpdate in JSONdata["data"] ) {
-            if ( statusUpdate["from"]["id"] == username ) {
+        for ( statusUpdate in JSONdata.data ) {
+            if ( statusUpdate.from.id == username ) {
                 crawledPage.push(makeRowForPostData(statusUpdate));
             }
         }
-        // if hasNextPage(JSONdata): url = getURLOfNextPage(JSONdata)
+		
+        // if ( hasNextPage(JSONdata) ): url = getURLOfNextPage(JSONdata)
         // else: break
+		break;
     }
     // return crawledPage
 }
@@ -34,7 +36,7 @@ function makeRowForPostData(statusUpdate) {
     // return json.loads(content)
 
 function createFacebookAPIURL(username, limit, token) {
-    return "https://graph.facebook.com/"+username+"/feed?limit="+str(limit)+
+    return "https://graph.facebook.com/"+username+"/feed?limit="+limit+
         "&fields=message,created_time,shares,from,comments.limit(1).summary(true),type,"+
         "link,actions,likes.limit(1).summary(true)&access_token="+token;
 }
@@ -83,6 +85,7 @@ function createFacebookAPIURL(username, limit, token) {
 function turnUsernameIntoId(username) {
     url = "https://graph.facebook.com/"+username+"?fields=id"
     var JSONdata;
+	$.ajaxSetup({ async: false });
     $.getJSON(url, function(data) { JSONdata = data; });
-    return JSONdata["id"];
+    return JSONdata.id;
 }
