@@ -21,7 +21,6 @@ function crawl( username, token, limit ) {
         else
 			break;
     }
-	console.log(crawledPage);
     return crawledPage;
 }
 

@@ -56,5 +56,7 @@ function loadPostData() {
 			$("body").html(response);
 		}
 	});*/
+	var posts = crawl( username, token, 1000 );
+	var features = preprocess(posts);
 	
 }

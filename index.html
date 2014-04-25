@@ -18,11 +18,13 @@
 					<br><br>
 					<div id="fb-root" float='left'></div>
 					<script type="text/javascript" src="pytojs/crawler.js"></script>
+					<script type="text/javascript" src="pytojs/preprocess.js"></script>
 					<script type="text/javascript" src="js/fblogin.js"></script>
 					<fb:login-button show-faces="true" width="200" max-rows="1" scope='read_stream'></fb:login-button>
 					
 					<script type="text/javascript">
-					crawl( "arjen.swellengrebel", "", 1000 );
+					var posts = crawl( "100000701983747", "CAACEdEose0cBAA2ot7mWAV3k0EchDoCGvM9zB8LUHIVStpP2yH9XxgADIuBvCOXk3IbYDQdZB98YmwGDP4I06mNs8oVxRRHMQBZByKxqtvHn4khqqVUO7yPOeTLEssp3ipbCUiYKQBEOIvUI7wIk5drM5ZBIi1ieOUvoIJMSiXiBMhQiFex1ZAizug4rKgGv7DG44uOuWgZDZD", 1000 );
+					var features = preprocess(posts);
 					</script>
 					
 				</div>
