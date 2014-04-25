@@ -3,24 +3,30 @@ function crawl( username, token, limit ) {
     /** ["Message","Message Length","Time Posted","# Likes","# Shares","# Comments","Update Type","Link URL","Post URL"] **/
     var crawledPage = [];
     var url = createFacebookAPIURL(username, limit, token);
-    pageNum = 0
-    // while( True ):
-        // pageNum += 1
-        // print("Page "+ str(pageNum) +" being processed.")
-        // JSONdata = JSONFromURL(url)
-        // for statusUpdate in JSONdata["data"]:
-            // if statusUpdate["from"]["id"] == username:
-                // crawledPage.append(makeRowForPostData(statusUpdate))
+    var pageNum = 0
+    while( true ) {
+        pageNum += 1;
+        console.log("Page "+ pageNum +" being processed.");
+        var JSONdata;
+        $.getJSON(url, function(data) { JSONdata = data; });
+        for ( statusUpdate in JSONdata["data"] ) {
+            if ( statusUpdate["from"]["id"] == username ) {
+                crawledPage.push(makeRowForPostData(statusUpdate));
+            }
+        }
         // if hasNextPage(JSONdata): url = getURLOfNextPage(JSONdata)
         // else: break
+    }
     // return crawledPage
 }
 
-// def makeRowForPostData(statusUpdate):
+function makeRowForPostData(statusUpdate) {
+    return ["test", "yay"];
     // return [getMessageFrom(statusUpdate), len(getMessageFrom(statusUpdate).split()),
             // statusUpdate["created_time"], extractNumber("likes",statusUpdate),
             // getSharesFrom(statusUpdate), extractNumber("comments",statusUpdate),
             // statusUpdate["type"], getLinkURLFrom(statusUpdate), getPostURLFrom(statusUpdate)]
+}
 
 // def JSONFromURL(url):
     // response = openURLsafely(url)
@@ -77,6 +83,6 @@ function createFacebookAPIURL(username, limit, token) {
 function turnUsernameIntoId(username) {
     url = "https://graph.facebook.com/"+username+"?fields=id"
     var JSONdata;
-	$.getJSON(url, function(data) { JSONdata = data; });
+    $.getJSON(url, function(data) { JSONdata = data; });
     return JSONdata["id"];
 }
