@@ -15,11 +15,12 @@ function crawl( username, token, limit ) {
             }
         }
 		
-        // if ( hasNextPage(JSONdata) ): url = getURLOfNextPage(JSONdata)
-        // else: break
-		break;
+        if ( hasNextPage(JSONdata) )
+			url = getURLOfNextPage(JSONdata);
+        else
+			break;
     }
-    // return crawledPage
+    return crawledPage
 }
 
 function makeRowForPostData(statusUpdate) {
@@ -41,11 +42,13 @@ function createFacebookAPIURL(username, limit, token) {
         "link,actions,likes.limit(1).summary(true)&access_token="+token;
 }
 
-// def hasNextPage(JSONdata):
-    // return "paging" in JSONdata
+function hasNextPage(JSONdata) {
+    return JSONdata.hasOwnProperty("paging");
+}
 
-// def getURLOfNextPage(JSONdata):
-    // return JSONdata["paging"]["next"]
+function getURLOfNextPage(JSONdata) {
+    return JSONdata.paging.next;
+}
 
 // def getLinkURLFrom(statusUpdate):
     // if "link" in statusUpdate: return statusUpdate["link"]
