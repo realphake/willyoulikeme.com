@@ -21,15 +21,15 @@ function crawl( username, token, limit ) {
         else
 			break;
     }
-    return crawledPage
+	console.log(crawledPage);
+    return crawledPage;
 }
 
 function makeRowForPostData(statusUpdate) {
-    return ["test", "yay"];
-    // return [getMessageFrom(statusUpdate), len(getMessageFrom(statusUpdate).split()),
-            // statusUpdate["created_time"], extractNumber("likes",statusUpdate),
-            // getSharesFrom(statusUpdate), extractNumber("comments",statusUpdate),
-            // statusUpdate["type"], getLinkURLFrom(statusUpdate), getPostURLFrom(statusUpdate)]
+    return [getMessageFrom(statusUpdate), getMessageFrom(statusUpdate).split().length,
+            statusUpdate.created_time, extractNumber("likes",statusUpdate),
+            getSharesFrom(statusUpdate), extractNumber("comments",statusUpdate),
+            statusUpdate["type"], getLinkURLFrom(statusUpdate), getPostURLFrom(statusUpdate)]
 }
 
 function createFacebookAPIURL(username, limit, token) {
@@ -46,26 +46,40 @@ function getURLOfNextPage(JSONdata) {
     return JSONdata.paging.next;
 }
 
-// def getLinkURLFrom(statusUpdate):
-    // if "link" in statusUpdate: return statusUpdate["link"]
-    // else: return ""
+function getLinkURLFrom(statusUpdate) {
+    if ( statusUpdate.hasOwnProperty("link") )
+		return statusUpdate.link;
+    else
+		return "";
+}
 
-// def getPostURLFrom(statusUpdate):
-    // if "actions" in statusUpdate: return statusUpdate["actions"][0]["link"]
-    // else: return ""
+function getPostURLFrom(statusUpdate) {
+	if ( statusUpdate.hasOwnProperty("actions") )
+		return statusUpdate.actions[0].link;
+    else
+		return "";
+}
 
-// def getMessageFrom(statusUpdate):
-    // if "message" in statusUpdate: return statusUpdate["message"]
-    // else: return ""
+function getMessageFrom(statusUpdate) {
+    if ( statusUpdate.hasOwnProperty("message") )
+		return statusUpdate.message;
+    else
+		return "";
+}
 
-// def getSharesFrom(statusUpdate):
-    // if "shares" in statusUpdate: return statusUpdate["shares"]["count"]
-    // else: return 0
+function getSharesFrom(statusUpdate) {
+    if ( statusUpdate.hasOwnProperty("shares") )
+		return statusUpdate.shares.count;
+    else
+		return 0;
+}
 
-// def extractNumber(category, statusUpdate):
-    // if category in statusUpdate: number = statusUpdate[category]["summary"]["total_count"]
-    // else: number = 0
-    // return number
+function extractNumber(category, statusUpdate) {
+    if ( statusUpdate.hasOwnProperty(category) )
+		return statusUpdate[category].summary.total_count;
+    else
+		return 0;
+}
 
 function turnUsernameIntoId(username) {
     url = "https://graph.facebook.com/"+username+"?fields=id"
