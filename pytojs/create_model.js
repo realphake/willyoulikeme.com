@@ -14,7 +14,6 @@ function build_model(processedData) {
 	}
 	var model = findLineByLeastSquares(data, likes);
 	console.log("Model created.");
-	console.log(model);
     return [header, model];
 }
 

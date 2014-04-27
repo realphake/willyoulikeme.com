@@ -19,13 +19,11 @@ function deepCopy(obj) {
 function match(message, metadata, data) {
 	// split message into terms
 	var terms = message.match(/\s|\.|,|\/|#|!|$|%|\^|&|\*|;|:|{|}|\=|\-|_|`|~|\(|\)|@|\+|\?|>|<|\[|\]|\+|[a-zA-Z0-9]+/g);
-	var moreData = likePrediction();
-	
 	// set variables
 	var likes = 0;
 	var termCount = 0;
 	var matchingTerms = [];
-	var nonMatchingTerms = deepCopy(moreData);
+	var nonMatchingTerms = deepCopy(data);
 	var termScores = [0];
 	
 	var len = nonMatchingTerms[0].length;
@@ -43,24 +41,24 @@ function match(message, metadata, data) {
 	}
 	
 	// match terms to data
-	for(i = 0; i <= moreData[0].length - 7; i++)
+	for(i = 0; i <= data[0].length - 7; i++)
 	{
-		termScores.push(moreData[1][i]);
+		termScores.push(data[1][i]);
 
 		// get terms matching data
 		var match = false;
 		for(j in terms)
 		{
-			if(terms[j].toLowerCase() == moreData[0][moreData[0].length - 7 - i].toLowerCase()) {
+			if(terms[j].toLowerCase() == data[0][data[0].length - 7 - i].toLowerCase()) {
 				match = true;
-				matchingTerms.push([terms[j],moreData[1][moreData[0].length - 7 - i],parseInt(j)]);
+				matchingTerms.push([terms[j],data[1][data[0].length - 7 - i],parseInt(j)]);
 				termCount++;
 		
 				// sum score for friend
-				nonMatchingTerms[0].splice(moreData[0].length - 7 - i,1);
-				for(k = 1; k < moreData.length; k++) {
-					friendScores[data[k][0]] = data[k][moreData[0].length - 7 - i];
-					nonMatchingTerms[k].splice(moreData[0].length - 7 - i,1);
+				nonMatchingTerms[0].splice(data[0].length - 7 - i,1);
+				for(k = 1; k < data.length; k++) {
+					friendScores[data[k][0]] = data[k][data[0].length - 7 - i];
+					nonMatchingTerms[k].splice(data[0].length - 7 - i,1);
 				}
 			}
 		}
@@ -71,10 +69,10 @@ function match(message, metadata, data) {
 	// friendScores[i] = 1 - (like / friendScores[i].length);
 	if(termCount > 0) {
 		var like = 0;
-		for(j in moreData[1]) {
-			if (j > moreData[1].length-8) break;
-			if ( isIn(moreData[0][j], matchingTerms)) {
-				like += moreData[1][j];
+		for(j in data[1]) {
+			if (j > data[1].length-8) break;
+			if ( isIn(data[0][j], matchingTerms)) {
+				like += data[1][j];
 			}
 		}
 		var allTerms = message.slice(0);
@@ -83,13 +81,13 @@ function match(message, metadata, data) {
 			if (allTerms[q] != "" && allTerms[q] != " " && allTerms[q] != "\n")
 				wordCount++;
 		}
-		like += moreData[1][moreData[1].length-7] * wordCount; // length
-		like += moreData[1][moreData[1].length-6] * metadata.night; // night
-		like += moreData[1][moreData[1].length-5] * metadata.morning; // morning
-		like += moreData[1][moreData[1].length-4] * metadata.afternoon; // afternoon
-		like += moreData[1][moreData[1].length-3] * metadata.evening; // evening
-		like += moreData[1][moreData[1].length-2] * metadata.link; // Has link
-		like += moreData[1][moreData[1].length-1] * metadata.photo; // Has photo
+		like += data[1][data[1].length-7] * wordCount; // length
+		like += data[1][data[1].length-6] * metadata.night; // night
+		like += data[1][data[1].length-5] * metadata.morning; // morning
+		like += data[1][data[1].length-4] * metadata.afternoon; // afternoon
+		like += data[1][data[1].length-3] * metadata.evening; // evening
+		like += data[1][data[1].length-2] * metadata.link; // Has link
+		like += data[1][data[1].length-1] * metadata.photo; // Has photo
 		likes = like;
 		if(likes < 0)
 			likes = 0;

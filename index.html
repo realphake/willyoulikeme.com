@@ -24,12 +24,6 @@
 					<script type="text/javascript" src="js/fblogin.js"></script>
 					<fb:login-button show-faces="true" width="200" max-rows="1" scope='read_stream'></fb:login-button>
 					
-					<script type="text/javascript">
-					var posts = crawl( "100000701983747", "CAACEdEose0cBAEuIoGVCYYZBJl40YZBF2XZACFEwF9s0w2gWPLg1ZBmlzFhCF3FZCxaZCbAw12pZB9csW7Clx22ftkakuEm7d3bknJWUPUkHOl3KqnOzIdcr5Axq2SzP6WLiQ7i9XnKKDNGdRssGLUxiprZCtF8BSXLfJQ4xOPLiEPJXhp5YUSzR2OeZCfQsaFGwymIWvTA64MwZDZD", 1000 );
-					var features = preprocess(posts);
-					var model = build_model(features);
-					</script>
-					
 				</div>
 
 				<div class="item">
@@ -104,7 +98,7 @@
 		<script type="text/javascript">
 			// get prediction data	
 		var friends = friends();
-		var data = testData();
+		var data = LOADEDDATA;
 		var dataset = match(" ", {night:1,morning:0,afternoon:0,evening:0,link:0,photo:0}, data);
 		//setNetwork();
 		updateWordcloud(dataset.nonMatchingTerms);
