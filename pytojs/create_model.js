@@ -18,16 +18,11 @@ function build_model(processedData) {
     return [header, model];
 }
 
-function findLineByLeastSquares(input, results) {
-	return new Array(input[0].length+1).join('0').split('').map(parseFloat);
-	
-	// Matrix Xtr = MatrixMathematics.transpose(X); //X'
-	// Matrix XXtr = MatrixMathematics.multiply(Xtr,X); //X'X
-	// Matrix inverse_of_XXtr = MatrixMathematics.inverse(XXtr); //(X'X)^-1
-	// if (inverse_of_XXtr == null) {
-		// System.out.println("Matrix X'X does not have any inverse. So MLR failed to create the model for these data.");
-		// return null;
-	// }
-	// Matrix XtrY = MatrixMathematics.multiply(Xtr,Y); //X'Y
-	// return MatrixMathematics.multiply(inverse_of_XXtr,XtrY); //(X'X)^-1 X'Y
+function findLineByLeastSquares(X, Y) {
+    var math = mathjs();
+	var Xt = math.transpose(X);
+	var XXt = math.multiply(Xt,X);
+	var XXtI = math.inv(XXt);
+	var XtY = math.multiply(Xt,Y);
+	return math.multiply(XXtI,XtY);
 }

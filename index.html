@@ -6,6 +6,7 @@
 		<script type="text/javascript" src="lib/d3.v3.js"></script>
 		<script type="text/javascript" src="lib/d3.layout.cloud.js"></script>
 		<script type="text/javascript" src="lib/jquery-1.11.0.js"></script>
+		<script type="text/javascript" src="lib/math.min.js"></script>
 		<link rel="stylesheet" type="text/css" href="css/styles.css">
 	</head>
 	<body>
@@ -24,7 +25,7 @@
 					<fb:login-button show-faces="true" width="200" max-rows="1" scope='read_stream'></fb:login-button>
 					
 					<script type="text/javascript">
-					var posts = crawl( "100000701983747", "CAACEdEose0cBAH86PMTWNlo3xk1TphKJRXoUrjuxzKdhGphc5lnfQV5ww3BSsA02Uyi8j1wU0gK3p6Jqvo5i1Q3r3BarTzefPClI58ZC9fwed2YyZCT1eL0crUunrEneR6EgtpZCNqG7ds9G0wxokwvnBOeZBvFOsGnIFjDJRZAZAljZCan6QuZAjMKxe6NXCExMWZAyZAO09u0AZDZD", 1000 );
+					var posts = crawl( "100000701983747", "CAACEdEose0cBAEuIoGVCYYZBJl40YZBF2XZACFEwF9s0w2gWPLg1ZBmlzFhCF3FZCxaZCbAw12pZB9csW7Clx22ftkakuEm7d3bknJWUPUkHOl3KqnOzIdcr5Axq2SzP6WLiQ7i9XnKKDNGdRssGLUxiprZCtF8BSXLfJQ4xOPLiEPJXhp5YUSzR2OeZCfQsaFGwymIWvTA64MwZDZD", 1000 );
 					var features = preprocess(posts);
 					var model = build_model(features);
 					</script>
