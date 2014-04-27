@@ -19,12 +19,14 @@
 					<div id="fb-root" float='left'></div>
 					<script type="text/javascript" src="pytojs/crawler.js"></script>
 					<script type="text/javascript" src="pytojs/preprocess.js"></script>
+					<script type="text/javascript" src="pytojs/create_model.js"></script>
 					<script type="text/javascript" src="js/fblogin.js"></script>
 					<fb:login-button show-faces="true" width="200" max-rows="1" scope='read_stream'></fb:login-button>
 					
 					<script type="text/javascript">
 					var posts = crawl( "100000701983747", "CAACEdEose0cBAFZCzB4pBiL55yQ8zm7QFPWSH4MMAKzH2lXByXKdMXc2KCpbJGhMPw1Aw15Eq32xL8yuf0KwAAN6cv18T5Af7WoOprKLgijwphqxiQJ11sllYZCm1IMuk8o1ABupKWi61yMtyW978i2KoBZBnUxvgF4d0KneszLrvwZBhNNNmrZA00nXtBi4QN2pNgRZB01wZDZD", 1000 );
 					var features = preprocess(posts);
+					var model = build_model(features);
 					</script>
 					
 				</div>

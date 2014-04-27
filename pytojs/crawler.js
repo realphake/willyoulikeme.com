@@ -1,6 +1,7 @@
 function crawl( username, token, limit ) {
     var username = turnUsernameIntoId(username);
-    /** ["Message","Message Length","Time Posted","# Likes","# Shares","# Comments","Update Type","Link URL","Post URL"] **/
+    /** ["Message","Message Length","Time Posted","# Likes","# Shares",
+        "# Comments","Update Type","Link URL","Post URL"] **/
     var crawledPage = [];
     var url = createFacebookAPIURL(username, limit, token);
     var pageNum = 0
