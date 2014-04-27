@@ -40,7 +40,7 @@ function makeTheProcessedData(allWords,postDicts,fullRows) {
     for ( var pD = 0; pD < postDicts.length; pD++ ) {
         var row = [];
         for ( var w = 0; w < allWords.length; w++ ) {
-            row.push(1*(postDicts[pD].hasOwnProperty(allWords[w])));
+            row.push((postDicts[pD].hasOwnProperty(allWords[w])) * 1);
 		}
         row = row.concat(fullRows[pD]);
         fullyProcessedDatabase.push(row);
@@ -74,17 +74,14 @@ function postHasA(postType, thing) {
 
 function formatPost(post) {
     return post.replace(/[^\w\s]|_/g, "").replace(/\s+/g, " ");
-	/** return ''.join(ch for ch in re.sub('\s+', ' ', post) if ch not in set(string.punctuation)); **/
 }
 
 function timeBetween(begin, ssm, end) {
-    return (ssm >= 3600*begin && ssm < 3600*end)*1;
+    return (ssm >= 3600*begin && ssm < 3600*end) * 1;
 }
 
 function sSinceMid(dateString) {
-	return 3;
-    // date = datetime.datetime.strptime(dateString[11:19], "%H:%M:%S")
-    // try: secs_since_midnight = (date - date.replace(hour=0, minute=0, second=0, microsecond=0)).total_seconds()
-    // except AttributeError: secs_since_midnight = (date - date.replace(hour=0, minute=0, second=0, microsecond=0)).seconds
-    // return secs_since_midnight
+	var date = new Date(dateString);
+	var ssm = date.getHours() * 3600 + date.getMinutes() * 60 + date.getSeconds();
+    return ssm;
 }
