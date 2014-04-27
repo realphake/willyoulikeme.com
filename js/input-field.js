@@ -21,7 +21,7 @@ function updateVisuals() {
 		metadata = {night:between(0,hours,6)*1,morning:between(6,hours,12)*1,
 				afternoon:between(12,hours,18)*1,evening:between(18,hours,24)*1,
 				link:linkSelected,photo:photoSelected};
-		dataset = match(message, metadata, data);
+		dataset = match(message, metadata, LOADEDDATA);
 
 		$('.highlighter').html(dataset.terms.join(""));
 		

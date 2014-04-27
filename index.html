@@ -98,8 +98,8 @@
 		<script type="text/javascript">
 			// get prediction data	
 		var friends = friends();
-		var data = LOADEDDATA;
-		var dataset = match(" ", {night:1,morning:0,afternoon:0,evening:0,link:0,photo:0}, data);
+		//var data = LOADEDDATA;
+		var dataset = match(" ", {night:1,morning:0,afternoon:0,evening:0,link:0,photo:0}, LOADEDDATA);
 		//setNetwork();
 		updateWordcloud(dataset.nonMatchingTerms);
 		// UNCOMMENT THESE WHEN THEY'RE DONE! Don't forget the lines in input-field.js
