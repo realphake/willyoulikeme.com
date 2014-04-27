@@ -96,12 +96,11 @@
 		<script type="text/javascript" src="js/network-graph.js"></script>
 		<script type="text/javascript" src="js/wordcloud.js"></script>
 		<script type="text/javascript">
-			// get prediction data	
+		// get prediction data	
 		var friends = friends();
-		//var data = LOADEDDATA;
 		var dataset = match(" ", {night:1,morning:0,afternoon:0,evening:0,link:0,photo:0}, LOADEDDATA);
-		//setNetwork();
 		updateWordcloud(dataset.nonMatchingTerms);
+		//setNetwork();
 		// UNCOMMENT THESE WHEN THEY'RE DONE! Don't forget the lines in input-field.js
 		</script>
 		<script type="text/javascript" src="js/barchart.js"></script>
