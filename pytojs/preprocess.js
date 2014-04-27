@@ -21,7 +21,6 @@ function preprocess(data) {
     var allWords = mostCommon(allWordsCounting, 50);
 	var fullyProcessedDatabase = makeTheProcessedData(allWords,postDicts,fullRows);
     console.log( "Preprocessing done." );
-	console.log(fullyProcessedDatabase);
     return fullyProcessedDatabase;
 }
 
