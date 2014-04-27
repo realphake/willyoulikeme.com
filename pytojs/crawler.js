@@ -25,7 +25,7 @@ function crawl( username, token, limit ) {
 }
 
 function makeRowForPostData(statusUpdate) {
-    return [getMessageFrom(statusUpdate), getMessageFrom(statusUpdate).split().length,
+    return [getMessageFrom(statusUpdate), getMessageFrom(statusUpdate).split(" ").length,
             statusUpdate.created_time, extractNumber("likes",statusUpdate),
             getSharesFrom(statusUpdate), extractNumber("comments",statusUpdate),
             statusUpdate["type"], getLinkURLFrom(statusUpdate), getPostURLFrom(statusUpdate)]
