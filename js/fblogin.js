@@ -58,4 +58,6 @@ function loadPostData() {
 	LOADEDDATA = model;
 	console.log(LOADEDDATA);
 	
+	updateVisuals();
+	
 }
