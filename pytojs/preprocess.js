@@ -29,7 +29,7 @@ function mostCommon(counted) {
 	var sortedCount = sortObject(counted);
 	console.log(sortedCount);
 	var mostCommonList = [];
-	for (var k = 0; k < sortedCount.length/10; k++ )
+	for (var k = 0; k < 50; k++ )
 		mostCommonList[k] = sortedCount[k].key;
 	return mostCommonList;
 }
