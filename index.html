@@ -85,14 +85,23 @@
 						</form>
 						<br>
 						<p class="text">This website is a beta version. If you find any bugs, have ideas for improvement, or just want to tell us what you think, email us at support@willyoulikeme.com.</p>
+						
+						<script type="text/javascript">
+						  ( function() {
+							if (window.CHITIKA === undefined) { window.CHITIKA = { 'units' : [] }; };
+							var unit = {"calltype":"async[2]","publisher":"WillYouLikeMe","width":550,"height":250,"sid":"Chitika Default"};
+							var placement_id = window.CHITIKA.units.length;
+							window.CHITIKA.units.push(unit);
+							document.write('<div id="chitikaAdBlock-' + placement_id + '"></div>');
+						}());
+						</script>
+						<script type="text/javascript" src="//cdn.chitika.net/getads.js" async></script>
 
 						<div class='tooltip'><img src='images/question.png'><span class='info'>Coming soon! The network graph shows how your friends are connected and if they are predicted to like your post. Simply by clicking on a node filters it out of the algorithm. This allows you to target specific people, clusters, or groups of friends.</span>
 						</div>
 
 					</div>
-
 				</div>
-
 				<div id="menu">
 					<a href="about.html"><img src="images/about.png"></a>
 				</div>
@@ -116,6 +125,5 @@
 		<script type="text/javascript" src="js/barchart.js"></script>
 		<script type="text/javascript">
 		</script>
-
 	</body>
 </html>
