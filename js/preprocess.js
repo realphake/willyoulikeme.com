@@ -2,6 +2,8 @@ function preprocess(data) {
 	var allWordsCounting = {};
 	var postDicts = [];
 	var fullRows = [];
+	//stopwords = loadStopwords();
+	stopwords = stopwords.split("\n");
 	for (var i = 0; i < data.length; i++) {
 		var row = data[i];
 		if ( row == [] )
@@ -11,6 +13,7 @@ function preprocess(data) {
 		var words = post.split(" ");
 		for ( var j = 0; j < words.length; j++ ) {
 			var t = words[j].toLowerCase();
+			if ( contains(stopwords, t) ) continue;
 			if ( postDict[t] != 1 )
 				allWordsCounting[t] = allWordsCounting[t] + 1 || 1;
 			postDict[t] = 1;
@@ -84,4 +87,27 @@ function sSinceMid(dateString) {
 	var date = new Date(dateString);
 	var ssm = date.getHours() * 3600 + date.getMinutes() * 60 + date.getSeconds();
 	return ssm;
+}
+
+function loadStopwords()
+{
+	var request = new XMLHttpRequest();
+    request.open("GET", "/stopwords/stopwords_en.txt", false);
+    request.send(null);
+    var returnValue = request.responseText.split('\n');
+	//console.log(contains(returnValue, "a"));
+	return returnValue;
+}
+
+//Old browsers don't have functions to find if something is in a list?
+function contains(a, str) {
+	//var regex = new RegExp("\b" + str + "\b(, ?)?");
+    var i = a.length;
+    while (--i) {
+	   console.log(a[i]);
+       if (str === a[i]) {
+           return true;
+       }
+    }
+    return false;
 }
